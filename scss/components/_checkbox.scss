@@ -1,0 +1,340 @@
+/* style.css */
+
+/* ===================================================== */
+/* NHÓM: CẤU TRÚC GỐC – Bố cục tổng thể và hiển thị chung */
+/* ===================================================== */
+.prod-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+/* ===================================================== */
+/* NHÓM THEME hunonic– Style áp dụng cho các nhóm thuộc giao diện A */
+/* ===================================================== */
+
+/* Cấp 0: thường là màu sắc */
+.prod-checkbox-group.theme-hunonic .attribute-level[data-level="0"] .attribute-option {
+    background-color: #e3f2fd;
+    border-color: #90caf9;
+    &:nth-child(2) {
+        background: #fff;
+        color: #000;
+    }
+    &:nth-child(3) {
+        background: #000000;
+        color: #fff;
+    }
+}
+.prod-checkbox-group.theme-hunonic .attribute-level[data-level="0"] .attribute-option.active {
+    border: 3px solid red;
+}
+
+/* Cấp 1: thường là số nút hoặc tính năng phụ */
+.prod-checkbox-group.theme-hunonic .attribute-level[data-level="1"] .attribute-option {
+    background-color: #fff3e0;
+    border-color: #ffcc80;
+}
+.prod-checkbox-group.theme-hunonic .attribute-level[data-level="1"] .attribute-option.active {
+    background-color: #ffd54f;
+    color: #000;
+    border-color: #ffb300;
+}
+
+/* ===================================================== */
+/* NHÓM THEME B – Style áp dụng cho các nhóm thuộc giao diện B */
+/* ===================================================== */
+
+/* Cấp 0: thường là màu sản phẩm */
+.prod-checkbox-group.theme-b .attribute-level[data-level="0"] .attribute-option {
+    background-color: #fff3e0;
+    border-color: #ffcc80;
+}
+.prod-checkbox-group.theme-b .attribute-level[data-level="0"] .attribute-option.active {
+    background-color: #ffa726;
+    color: #000;
+    border-color: #fb8c00;
+}
+
+/* Cấp 1: thường là kiểu chức năng */
+.prod-checkbox-group.theme-b .attribute-level[data-level="1"] .attribute-option {
+    background-color: #fff8e1;
+    border-color: #ffe082;
+}
+.prod-checkbox-group.theme-b .attribute-level[data-level="1"] .attribute-option.active {
+    background-color: #ffd54f;
+    color: #000;
+    border-color: #ffb300;
+}
+
+/* ===================================================== */
+/* PHẦN CHUNG – Style mặc định cho tất cả nhóm, cấp, theme */
+/* ===================================================== */
+
+.attribute-level {
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: #f9f9f9;
+}
+
+.attribute-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.attribute-option {
+    min-width: 70px;
+    text-align: center;
+    display: inline-block;
+    margin: 6px 8px 6px 0;
+    padding: 10px 16px;
+    border: 1px solid #818181;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    font-size: 14px;
+}
+
+.attribute-option.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: bold;
+}
+
+.attribute-option:hover {
+    border-color: #007bff;
+    background-color: #e9f3ff;
+}
+
+.prod-checkbox-image {
+    display: flex;
+    justify-content: center;
+    position: relative; // quan trọng để lens có tọa độ gốc
+    overflow: hidden; // ẩn phần lens vượt ra ngoài nếu cần
+}
+
+.prod-checkbox-image__img {
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 4px;
+    background-color: #fff;
+}
+
+.prod-checkbox-price {
+    display: flex;
+    gap: 5px;
+    font-size: 16px;
+    color: #444;
+}
+
+.prod-checkbox-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+}
+
+.prod-checkbox-original {
+    color: #999;
+    font-size: 14px;
+}
+
+.prod-checkbox-discount {
+    color: #d9534f;
+    font-weight: 500;
+    margin: 4px 0;
+}
+
+.prod-checkbox-final {
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: #d32f2f; // Màu đỏ nổi bật
+    margin-top: 8px;
+    // Nếu là giá dạng chữ như "Liên hệ", có thể thêm style riêng
+    // ✅ Giá là số (định dạng thông thường, ví dụ 1.200.000đ)
+    &:not(.is-string) {
+        color: #2e7d32; // Màu xanh đậm
+    }
+
+    // ❌ Giá không phải là số (ví dụ: "Liên hệ", "Chưa cập nhật")
+    &.is-string {
+        color: #d32f2f; // Màu đỏ nổi bật
+        font-style: italic; // In nghiêng để phân biệt rõ
+        padding: 6px 12px;
+        border-radius: 6px;
+        display: inline-block;
+
+        // Biểu tượng phía trước giúp gợi ý đây là đoạn văn bản, không phải giá tiền
+        &::before {
+            content: "💬 ";
+            margin-right: 4px;
+        }
+    }
+}
+
+.prod-checkbox-thumbnails-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    overflow: hidden;
+}
+
+.prod-checkbox-thumbnails {
+    width: 80%;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 5px 0;
+    justify-content: flex-start;
+}
+
+.prod-checkbox-thumbnail {
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border 0.3s ease;
+    opacity: 0.4;
+}
+
+.prod-checkbox-thumbnail:hover,
+.prod-checkbox-thumbnail.active {
+    border-color: var(--border-color, #007bff);
+    opacity: 1;
+}
+
+.thumbnail-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+}
+
+.thumbnail-arrow.left {
+    left: 30px;
+}
+
+.thumbnail-arrow.right {
+    right: 30px;
+}
+.zoom-toggle-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.zoom-label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Nút gạt đẹp */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+.zoom-lens {
+    position: absolute;
+    display: none;
+    pointer-events: none;
+    z-index: 1000;
+
+    // ====== ✅ Điều chỉnh vị trí hiển thị tương đối ảnh ======
+    // Nếu muốn lệch sang trái hoặc phải so với con trỏ
+    transform: translate(0, 0); // hoặc translate(-50%, -50%) nếu muốn căn giữa
+    // ========================================================
+
+    // ====== ✅ Điều chỉnh kích thước cửa sổ zoom ======
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ccc;
+    border-radius: 50%; // hoặc bỏ nếu bạn muốn hình vuông
+    // ==================================================
+
+    // ====== ✅ Điều chỉnh hình nền zoom ======
+    background-repeat: no-repeat;
+    background-size: 300% 300%; // tỷ lệ zoom
+    background-position: center;
+    // =========================================
+
+    // ====== ✅ Tùy chỉnh thêm nếu muốn có bóng đổ ======
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    // ==================================================
+
+    // Hiệu ứng ánh sáng bên trong (tùy chọn)
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+        pointer-events: none;
+    }
+}
